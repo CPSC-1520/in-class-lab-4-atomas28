@@ -1,6 +1,44 @@
 
 // Enter your code below.
 
+//Step 1
+let newOrderForm = document.querySelector("#new-order-form");
+
+
+
+newOrderForm.addEventListener('submit', function(event){
+
+  event.preventDefault();
+
+  let formItemName = event.target.elements['order-item-name'].value; 
+  let formItemPrice = event.target.elements['order-item-price'].value;
+  let formOrderSize = event.target.elements['order-size'].value;
+  console.log(formItemName)
+  addOrderItem(formItemName, formItemPrice,formOrderSize)
+  
+  console.log(addOrderItem)
+
+  let isFormValid = true;
+  
+  //3.
+  //a.
+  if(isValueNotEmpty(formItemName))
+  {
+    event.target.elements['order-item-name'].classList.remove("is_invalid");
+  }
+  //b.
+  else 
+  {
+    event.target.elements['order-item-name'].classList.add("is-invalid");
+  }
+  isFormValid = false;
+
+});
+
+
+
+
+
 
 // functions needed for assessment (do not change.)
 
