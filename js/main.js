@@ -14,7 +14,7 @@ newOrderForm.addEventListener('submit', function(event){
   let formItemPrice = event.target.elements['order-item-price'].value;
   let formOrderSize = event.target.elements['order-size'].value;
   console.log(formItemName)
-  addOrderItem(formItemName, formItemPrice,formOrderSize)
+  
   
   console.log(addOrderItem)
 
@@ -30,14 +30,56 @@ newOrderForm.addEventListener('submit', function(event){
   else 
   {
     event.target.elements['order-item-name'].classList.add("is-invalid");
+    
+    isFormValid = false;
   }
-  isFormValid = false;
+  event.target.reset();
+
+  //5.
+  //a. 
+  if(isValueNotEmpty(formItemPrice) && isGreaterThanFive(parseFloat(formItemPrice)))
+  {
+    event.target.elements['order-item-price'].classList.remove("is_invalid");
+  }
+  else
+  {
+    event.target.elements['order-item-price'].classList.add("is_invalid");
+    
+    isFormValid = false;
+  }
+  event.target.reset();
+
+  
+
+  // 6.
+
+  if(isValueNotEmpty(formOrderSize))
+  {
+    event.target.elements['order-size'].classList.remove("is-invalid");
+    
+  }
+  else
+  {
+    event.target.elements['order-size'].classList.add("is-invalid");
+    
+    isFormValid = false;
+  }
+  event.target.reset();
+
+  
+
+  if(isFormValid) {
+    addOrderItem(formItemName, formItemPrice, formOrderSize);
+    event.target.reset();
+    console.log("Form is valid, submission success.");
+  }
+  else
+  {
+    console.log("Form is invalid, Submission failed.");
+    event.target.reset();
+  }
 
 });
-
-
-
-
 
 
 // functions needed for assessment (do not change.)
